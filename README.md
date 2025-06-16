@@ -1,4 +1,4 @@
-# Backup de Arquivos Mulato
+# Backup de Arquivos
 
 Uma ferramenta simples para realizar backup de arquivos e compactá-los em vários arquivos ZIP.
 

@@ -122,6 +122,40 @@ when(service.doSomething()).thenReturn("resultado");
 
 Configure pipelines de CI (como GitHub Actions, GitLab CI, Jenkins) para rodar os testes automaticamente a cada push. Isso garante que novas alterações não quebrem funcionalidades existentes.
 
+### Exemplo de pipeline com GitHub Actions
+
+```yaml
+name: Java CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - name: Build with Maven
+        run: mvn clean test
+```
+
+## Testes Parametrizados com JUnit 5
+
+```java
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+@ParameterizedTest
+@ValueSource(strings = {"file1.txt", "file2.txt"})
+void testFileNames(String fileName) {
+    assertTrue(fileName.startsWith("file"));
+}
+```
+
 ## Exemplo de Classe de Teste Unitário
 
 ```java
@@ -220,3 +254,58 @@ Abra esse arquivo no navegador para visualizar a cobertura dos testes.
 - Torne métodos utilitários testáveis (não privados).
 - Escreva testes unitários para métodos de lógica.
 - Gere e consulte o relatório de cobertura com JaCoCo.
+- Considere automatizar seus testes com pipelines de CI modernos.
+- Compartilhe suas experiências e dúvidas nos comentários!
+
+---
+
+## Adendo: Hospedando o Código no GitHub e Publicando em Ambiente Produtivo
+
+Além de implementar e testar seu projeto localmente, você pode hospedar o código no GitHub e publicar em ambientes produtivos. Veja como:
+
+### 1. Hospedando no GitHub
+
+- Crie um repositório no GitHub.
+- Faça o commit do seu projeto local e envie para o repositório remoto:
+  
+```bash
+git init
+git add .
+git commit -m "Primeiro commit"
+git remote add origin https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git
+git push -u origin main
+```
+
+### 2. Publicando em Ambiente Produtivo
+
+O método de publicação depende do tipo de aplicação:
+
+- **Aplicação Desktop Java**
+  
+- Gere um JAR executável com Maven:
+
+```bash
+mvn clean package
+```
+
+- Transfira o arquivo `.jar` para o servidor ou máquina onde será executado.
+- Execute com:
+
+```bash
+java -jar nome-do-arquivo.jar
+```
+
+- **Aplicação Web Java**
+
+- Gere um arquivo `.war` ou `.jar` e faça o deploy em um servidor de aplicação (Tomcat, WildFly, etc.) ou em serviços de nuvem (Azure, AWS, Heroku, etc.).
+
+- **Automação com CI/CD**
+
+- Use GitHub Actions para automatizar testes, builds e até deploys para ambientes de produção.
+
+> **Resumo:**  
+> - GitHub serve para versionamento, colaboração e integração contínua.
+> - O deploy em produção depende do tipo de aplicação e do ambiente escolhido.
+> - Você pode automatizar o processo de build e deploy usando pipelines de CI/CD.
+
+Se quiser um exemplo de workflow de deploy ou dicas para um ambiente específico, deixe sua dúvida nos comentários!

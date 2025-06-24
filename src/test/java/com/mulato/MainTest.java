@@ -1,3 +1,7 @@
+/**
+ * Teste unitário para o método main da classe Main.
+ * Garante que a aplicação inicia sem lançar exceções.
+ */
 package com.mulato;
 
 import org.junit.jupiter.api.Test;

@@ -1,3 +1,13 @@
+/**
+ * Testes unitários para a classe FileBackup.
+ * 
+ * Este arquivo valida os principais métodos de backup, incluindo:
+ * - Contagem de arquivos em diretórios vazios e preenchidos
+ * - Cópia de diretórios e arquivos
+ * 
+ * Os testes garantem que as operações de backup funcionam corretamente
+ * e que arquivos são copiados e contados conforme esperado.
+ */
 package com.mulato;
 
 import java.io.File;

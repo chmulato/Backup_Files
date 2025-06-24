@@ -1,3 +1,27 @@
+/**
+ * FileBackup - Aplicação Java para backup de arquivos com interface gráfica.
+ *
+ * Esta classe implementa uma interface Swing para:
+ * - Selecionar diretórios de origem e destino para backup
+ * - Copiar arquivos de forma recursiva para uma pasta temporária
+ * - Compactar arquivos em múltiplos arquivos ZIP com tamanho máximo definido
+ * - Exibir barra de progresso e mensagens ao usuário
+ * - Gerar logs detalhados das operações realizadas
+ *
+ * Funcionalidades:
+ * - Interface intuitiva para seleção de pastas e execução das operações
+ * - Compactação com Apache Commons Compress (nível máximo)
+ * - Divisão automática dos arquivos ZIP conforme o tamanho escolhido
+ * - Registro de logs com data, nome dos arquivos ZIP e arquivos incluídos
+ * - Testes unitários disponíveis para os principais métodos
+ *
+ * Requisitos:
+ * - Java 8 ou superior
+ * - Apache Commons Compress
+ *
+ * Autor: Christian Vladimir Uhdre Mulato
+ * Data: 24 de Junho de 2025
+ */
 package com.mulato;
 
 import java.awt.GridLayout;

@@ -1,10 +1,13 @@
 # Backup de Arquivos
 
+![Exemplo de interface do Java Backup](img/java-backup.png)
+
 Uma ferramenta simples para realizar backup de arquivos e compactá-los em vários arquivos ZIP.
 
 ## Visão Geral
 
 Este aplicativo Java permite:
+
 - Selecionar um diretório fonte para backup
 - Copiar arquivos para um diretório temporário
 - Compactar os arquivos em múltiplos arquivos ZIP com tamanho limitado
@@ -14,7 +17,7 @@ Este aplicativo Java permite:
 
 - Java 8 ou superior
 - Apache Commons Compress 1.21
-- Maven (opcional, para compilação)
+- Maven (para compilação, testes e cobertura de código)
 
 ## Como Usar
 
@@ -23,11 +26,17 @@ Este aplicativo Java permite:
 O aplicativo inclui scripts de execução para Windows e Linux/macOS:
 
 **Windows:**
+
+```bash
 executar-backup.bat
+```
 
 **Linux/macOS:**
+
+```bash
 chmod +x executar-backup.sh
 ./executar-backup.sh
+```
 
 ### Interface do Aplicativo
 
@@ -43,42 +52,77 @@ chmod +x executar-backup.sh
 - **Registro detalhado**: Cria logs com informações de todos os arquivos processados, incluindo caminho completo
 - **Barra de progresso**: Mostra o andamento da operação em tempo real
 
-## Compilação Manual
+## Estrutura do Projeto
 
-### Via Maven:
+```bash
+src/main/java/com/mulato/        # Código-fonte da aplicação
+src/test/java/com/mulato/        # Testes unitários
+FileBackup.java                  # Classe principal com interface gráfica e lógica de backup
+FileBackupTest.java              # Testes unitários para FileBackup
+MainTest.java                    # Teste para o método main
+executar-backup.bat              # Script para Windows
+executar-backup.sh               # Script para Linux/macOS
+pom.xml                          # Configuração do Maven (dependências, plugins, cobertura)
+```
 
-mvn clean package
+## Testes Unitários e Cobertura de Código
 
-Via linha de comando:
-javac -cp ".;C:/caminho/para/commons-compress-1.21.jar" -d target/classes src/main/java/com/mulato/*.java
+O projeto utiliza **JUnit 5** para testes unitários e **JaCoCo** para análise de cobertura de código.
 
-Criando JAR executável:
-echo Main-Class: com.mulato.FileBackup > MANIFEST.MF
-jar cfm backup-all.jar MANIFEST.MF -C target/classes .
+### Executando os testes
 
-Estrutura do Projeto
+Para rodar os testes e gerar o relatório de cobertura, utilize:
 
-src/main/java/com/mulato/: Código-fonte da aplicação
-FileBackup.java: Classe principal com interface gráfica e lógica de backup
-executar-backup.bat: Script para Windows
-executar-backup.sh: Script para Linux/macOS
+```bash
+mvn clean test
+```
 
-Logs de Backup
+O relatório de cobertura será gerado em:
+
+```bash
+target/site/jacoco/index.html
+```
+
+Abra esse arquivo no navegador para visualizar a cobertura dos testes.
+
+### Exemplo de Teste Unitário
+
+```java
+@Test
+void testCountFilesEmptyFolder() throws IOException {
+    File tempDir = new File("testDirEmpty");
+    tempDir.mkdir();
+    try {
+        int count = FileBackup.countFiles(tempDir);
+        assertEquals(0, count);
+    } finally {
+        tempDir.delete();
+    }
+}
+
+    try {
+        int count = FileBackup.countFiles(tempDir);
+        assertEquals(0, count);
+    } finally {
+        tempDir.delete();
+    }
+}
+```
+
+## Logs de Backup
 
 Os logs são gerados na pasta de destino e contêm:
 
-Data e hora do backup
+- Data e hora do backup
+- Nome dos arquivos ZIP gerados
+- Caminho completo de cada arquivo incluído no backup
+- Mensagens de erro (caso ocorram)
 
-Nome dos arquivos ZIP gerados
-Caminho completo de cada arquivo incluído no backup
-Mensagens de erro (caso ocorram)
-
-Aviso
+## Aviso
 
 Este aplicativo foi desenvolvido para uso pessoal e educacional. Para ambientes de produção, considere recursos adicionais como:
 
-Criptografia dos arquivos de backup
-Verificação de integridade
-Backup incremental
-Agendamento automático
-
+- Criptografia dos arquivos de backup
+- Verificação de integridade
+- Backup incremental
+- Agendamento automático

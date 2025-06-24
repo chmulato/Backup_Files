@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -31,7 +30,7 @@ public class FileBackup {
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         JMenuBar menuBar = new JMenuBar();
-        JMenu menu = new JMenu("Configurações");
+        JMenu menu = new JMenu("Configuraï¿½ï¿½es");
         JMenuItem sourceMenuItem = new JMenuItem("Selecionar Origem");
         JMenuItem destinationMenuItem = new JMenuItem("Selecionar Destino");
         menu.add(sourceMenuItem);
@@ -84,22 +83,22 @@ public class FileBackup {
         copyButton.addActionListener(e -> new Thread(() -> copyFiles()).start());
         zipButton.addActionListener(e -> new Thread(() -> zipFiles()).start());
 
-        // Verifica se existe pasta temporária ao iniciar
+        // Verifica se existe pasta temporï¿½ria ao iniciar
         checkTempFolder();
     }
 
     private static void selectDirectory(JTextField textField) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        fileChooser.setDialogTitle("Selecione o diretório");
+        fileChooser.setDialogTitle("Selecione o diretï¿½rio");
         fileChooser.setApproveButtonText("Selecionar");
         if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             textField.setText(fileChooser.getSelectedFile().getAbsolutePath());
-            checkTempFolder(); // Verifica se a pasta temporária existe após selecionar diretório
+            checkTempFolder(); // Verifica se a pasta temporï¿½ria existe apï¿½s selecionar diretï¿½rio
         }
     }
 
-    // Método para verificar a existência da pasta temporária e ajustar os botões
+    // Mï¿½todo para verificar a existï¿½ncia da pasta temporï¿½ria e ajustar os botï¿½es
     private static void checkTempFolder() {
         String destDir = destinationPathField.getText();
         if (!destDir.isEmpty()) {
@@ -116,13 +115,13 @@ public class FileBackup {
     private static void zipFiles() {
         String destDir = destinationPathField.getText();
         if (destDir.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Selecione o diretório de destino.", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione o diretï¿½rio de destino.", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         progressBar.setValue(0);
 
-        // Desativa os botões durante a operação
+        // Desativa os botï¿½es durante a operaï¿½ï¿½o
         SwingUtilities.invokeLater(() -> {
             zipButton.setEnabled(false);
             copyButton.setEnabled(false);
@@ -131,7 +130,7 @@ public class FileBackup {
         try (BufferedWriter logWriter = new BufferedWriter(new FileWriter(destDir + "/backup.log", true))) {
             File destFolder = new File(destDir + "/backup_temp");
             if (!destFolder.exists()) {
-                JOptionPane.showMessageDialog(null, "A pasta temporária não existe. Primeiro copie os arquivos.", "Erro", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "A pasta temporï¿½ria nï¿½o existe. Primeiro copie os arquivos.", "Erro", JOptionPane.ERROR_MESSAGE);
                 checkTempFolder();
                 return;
             }
@@ -145,16 +144,16 @@ public class FileBackup {
             int zipSizeBytes = zipSizeMB * 1024 * 1024;
             zipDirectory(destFolder, destFolder.getName(), destDir, zipSizeBytes, 1, logWriter, filesProcessed);
 
-            // Remover a pasta temporária
+            // Remover a pasta temporï¿½ria
             deleteDirectory(destFolder);
 
-            // Após compactação, habilita o botão de cópia
+            // Apï¿½s compactaï¿½ï¿½o, habilita o botï¿½o de cï¿½pia
             SwingUtilities.invokeLater(() -> {
                 copyButton.setEnabled(true);
                 zipButton.setEnabled(false);
             });
 
-            JOptionPane.showMessageDialog(null, "Compactação concluída com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Compactaï¿½ï¿½o concluï¿½da com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
             e.printStackTrace();
             checkTempFolder();
@@ -165,13 +164,13 @@ public class FileBackup {
         String sourceDir = sourcePathField.getText();
         String destDir = destinationPathField.getText();
         if (sourceDir.isEmpty() || destDir.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Selecione os diretórios de origem e destino.", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione os diretï¿½rios de origem e destino.", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         progressBar.setValue(0);
 
-        // Desativa os botões durante a operação
+        // Desativa os botï¿½es durante a operaï¿½ï¿½o
         SwingUtilities.invokeLater(() -> {
             copyButton.setEnabled(false);
             zipButton.setEnabled(false);
@@ -188,24 +187,24 @@ public class FileBackup {
             progressBar.setMaximum(totalFiles);
             AtomicInteger filesProcessed = new AtomicInteger(0);
 
-            // Copiar arquivos da origem para o destino temporário
+            // Copiar arquivos da origem para o destino temporï¿½rio
             copyDirectory(sourceFolder, destFolder, filesProcessed);
             progressBar.setValue(totalFiles);
 
-            // Após cópia, habilita o botão de compactação
+            // Apï¿½s cï¿½pia, habilita o botï¿½o de compactaï¿½ï¿½o
             SwingUtilities.invokeLater(() -> {
                 copyButton.setEnabled(false);
                 zipButton.setEnabled(true);
             });
 
-            JOptionPane.showMessageDialog(null, "Cópia concluída com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cï¿½pia concluï¿½da com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
             e.printStackTrace();
             checkTempFolder();
         }
     }
 
-    // Os outros métodos continuam iguais...
+    // Os outros mï¿½todos continuam iguais...
     private static void deleteDirectory(File folder) {
         File[] files = folder.listFiles();
         if (files != null) {
@@ -220,7 +219,7 @@ public class FileBackup {
         folder.delete();
     }
 
-    private static void copyDirectory(File sourceFolder, File destFolder, AtomicInteger filesProcessed) throws IOException {
+    static void copyDirectory(File sourceFolder, File destFolder, AtomicInteger filesProcessed) throws IOException {
         File[] files = sourceFolder.listFiles();
         if (files == null) return;
 
@@ -245,7 +244,7 @@ public class FileBackup {
         }
     }
 
-    private static int countFiles(File folder) {
+    static int countFiles(File folder) {
         File[] files = folder.listFiles();
         if (files == null) return 0;
         int count = 0;
@@ -271,7 +270,7 @@ public class FileBackup {
         int currentZipIndex = zipIndex;
         ZipArchiveOutputStream zos = new ZipArchiveOutputStream(
                 new FileOutputStream(destDir + "/backup_" + currentZipIndex + ".zip"));
-        zos.setLevel(9); // Nível máximo de compressão
+        zos.setLevel(9); // Nï¿½vel mï¿½ximo de compressï¿½o
 
         logWriter.write("Backup realizado em: " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "\n");
         logWriter.write("Arquivo ZIP: backup_" + currentZipIndex + ".zip\n");
@@ -324,7 +323,7 @@ public class FileBackup {
         zos.close();
     }
 
-    // Classe auxiliar para armazenar informações do arquivo
+    // Classe auxiliar para armazenar informaï¿½ï¿½es do arquivo
     private static class FileEntry {
         File file;
         String path;
@@ -335,7 +334,7 @@ public class FileBackup {
         }
     }
 
-    // Método para coletar recursivamente todos os arquivos
+    // Mï¿½todo para coletar recursivamente todos os arquivos
     private static void collectFiles(File folder, String basePath, List<FileEntry> fileList) {
         File[] files = folder.listFiles();
         if (files == null) return;

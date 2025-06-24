@@ -40,10 +40,10 @@ chmod +x executar-backup.sh
 
 ### Interface do Aplicativo
 
-1. Clique em **Selecionar Pasta** para escolher o diretório que deseja fazer backup
-2. Clique em **Copiar Arquivos** para iniciar a cópia dos arquivos para o diretório temporário
-3. Após a conclusão da cópia, clique em **Compactar** para gerar os arquivos ZIP
-4. Os arquivos de backup serão salvos no diretório de destino
+1. Clique em **Selecionar Pasta** para escolher o diretório que deseja fazer backup.
+2. Clique em **Copiar Arquivos** para iniciar a cópia dos arquivos para o diretório temporário.
+3. Após a conclusão da cópia, clique em **Compactar** para gerar os arquivos ZIP.
+4. Os arquivos de backup serão salvos no diretório de destino.
 
 ## Características
 
@@ -84,6 +84,8 @@ target/site/jacoco/index.html
 ```
 
 Abra esse arquivo no navegador para visualizar a cobertura dos testes.
+
+![Exemplo de relatório JaCoCo](img/jacoco_site.png)
 
 ### Exemplo de Teste Unitário
 

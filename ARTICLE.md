@@ -240,6 +240,8 @@ O relatório será gerado em:
 
 Abra esse arquivo no navegador para visualizar a cobertura dos testes.
 
+![Exemplo de relatório JaCoCo](img/jacoco_site.png)
+
 ## Recursos e Leituras Complementares
 
 - [Documentação Oficial do JUnit 5](https://junit.org/junit5/docs/current/user-guide/)

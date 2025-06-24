@@ -1,6 +1,6 @@
 # Backup de Arquivos
 
-![Exemplo de interface do Java Backup](img/java-backup.png)
+![Exemplo de interface do Java Backup](img/backup_files.png)
 
 Uma ferramenta simples para realizar backup de arquivos e compactá-los em vários arquivos ZIP.
 

@@ -2,6 +2,8 @@
 
 ![JaCoCo](img/jacoco.png)
 
+Este artigo aborda a implementação de testes unitários em um projeto Java utilizando Maven, com foco na classe `FileBackup` e na geração de relatórios de cobertura de código com JaCoCo. Vamos explorar como estruturar o projeto, escrever testes eficazes e garantir a qualidade do código.
+
 ## Por que Escrever Testes Unitários?
 
 Testes unitários garantem que cada parte do seu código funciona como esperado, facilitando a manutenção, refatoração e evolução do projeto. Eles ajudam a identificar rapidamente bugs e reduzem o custo de correção de erros.
@@ -309,3 +311,25 @@ java -jar nome-do-arquivo.jar
 > - Você pode automatizar o processo de build e deploy usando pipelines de CI/CD.
 
 Se quiser um exemplo de workflow de deploy ou dicas para um ambiente específico, deixe sua dúvida nos comentários!
+
+## Índice Remissivo
+
+- [Implementando Testes Unitários em um Projeto Java com Maven](#implementando-testes-unitários-em-um-projeto-java-com-maven)
+  - [Por que Escrever Testes Unitários?](#por-que-escrever-testes-unitários)
+  - [Estrutura de Pastas Padrão](#estrutura-de-pastas-padrão)
+  - [Boas Práticas para Testes Unitários](#boas-práticas-para-testes-unitários)
+  - [Configurando Dependências no Maven](#configurando-dependências-no-maven)
+  - [Tornando Métodos Testáveis](#tornando-métodos-testáveis)
+  - [Exemplos de Asserts no JUnit](#exemplos-de-asserts-no-junit)
+  - [Utilizando Mocks em Testes](#utilizando-mocks-em-testes)
+  - [Integração Contínua e Testes Automatizados](#integração-contínua-e-testes-automatizados)
+    - [Exemplo de pipeline com GitHub Actions](#exemplo-de-pipeline-com-github-actions)
+  - [Testes Parametrizados com JUnit 5](#testes-parametrizados-com-junit-5)
+  - [Exemplo de Classe de Teste Unitário](#exemplo-de-classe-de-teste-unitário)
+  - [Testando o Método Main](#testando-o-método-main)
+  - [Gerando Relatórios de Cobertura com JaCoCo](#gerando-relatórios-de-cobertura-com-jacoco)
+  - [Recursos e Leituras Complementares](#recursos-e-leituras-complementares)
+  - [Adendo: Hospedando o Código no GitHub e Publicando em Ambiente Produtivo](#adendo-hospedando-o-código-no-github-e-publicando-em-ambiente-produtivo)
+    - [1. Hospedando no GitHub](#1-hospedando-no-github)
+    - [2. Publicando em Ambiente Produtivo](#2-publicando-em-ambiente-produtivo)
+  - [Índice Remissivo](#índice-remissivo)

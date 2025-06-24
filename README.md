@@ -88,23 +88,23 @@ Abra esse arquivo no navegador para visualizar a cobertura dos testes.
 ### Exemplo de Teste Unitário
 
 ```java
-@Test
-void testCountFilesEmptyFolder() throws IOException {
-    File tempDir = new File("testDirEmpty");
-    tempDir.mkdir();
-    try {
-        int count = FileBackup.countFiles(tempDir);
-        assertEquals(0, count);
-    } finally {
-        tempDir.delete();
-    }
-}
+import org.junit.jupiter.api.Test;
+import java.io.File;
+import java.io.IOException;
+import static org.junit.jupiter.api.Assertions.*;
 
-    try {
-        int count = FileBackup.countFiles(tempDir);
-        assertEquals(0, count);
-    } finally {
-        tempDir.delete();
+class FileBackupTest {
+
+    @Test
+    void testCountFilesEmptyFolder() throws IOException {
+        File tempDir = new File("testDirEmpty");
+        tempDir.mkdir();
+        try {
+            int count = FileBackup.countFiles(tempDir);
+            assertEquals(0, count);
+        } finally {
+            tempDir.delete();
+        }
     }
 }
 ```

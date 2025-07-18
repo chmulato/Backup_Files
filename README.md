@@ -1,8 +1,6 @@
 # Backup de Arquivos
 
-![Exemplo de interface do Java Backup](img/backup_files.png)
-
-Uma ferramenta simples para realizar backup de arquivos e compactá-los em vários arquivos ZIP.
+Ferramenta para realizar backup de arquivos e compactá-los em múltiplos arquivos ZIP.
 
 ## Visão Geral
 
@@ -40,9 +38,9 @@ chmod +x executar-backup.sh
 
 ### Interface do Aplicativo
 
-1. Clique em **Selecionar Pasta** para escolher o diretório que deseja fazer backup.
-2. Clique em **Copiar Arquivos** para iniciar a cópia dos arquivos para o diretório temporário.
-3. Após a conclusão da cópia, clique em **Compactar** para gerar os arquivos ZIP.
+1. Clique em "Selecionar Pasta" para escolher o diretório de origem.
+2. Clique em "Copiar Arquivos" para iniciar a cópia para o diretório temporário.
+3. Após a cópia, clique em "Compactar" para gerar os arquivos ZIP.
 4. Os arquivos de backup serão salvos no diretório de destino.
 
 ## Características
@@ -128,3 +126,7 @@ Este aplicativo foi desenvolvido para uso pessoal e educacional. Para ambientes 
 - Verificação de integridade
 - Backup incremental
 - Agendamento automático
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
